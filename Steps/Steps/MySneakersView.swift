@@ -1,4 +1,3 @@
-//
 //  MySneakers.swift
 //  Steps
 //
@@ -8,19 +7,55 @@
 import SwiftUI
 
 struct MySneakers: View {
+    @Environment(\.dismiss) var dismiss
     @State private var purchaseDate = Date()
     @State private var shoeNickname = ""
+    @State private var life = 300.0
     @State private var sneaker = Sneaker.exampleSneaker
+    @State private var sneakerLoaded = false
     
     var body: some View {
-        
-        VStack {
-            DatePicker("Purchase Date", selection: $purchaseDate, displayedComponents: .date)
+        NavigationView{
+            VStack {
+                DatePicker("Purchase Date", selection: $purchaseDate, displayedComponents: .date)
+                    .padding()
+                
+                HStack{
+                    Text("Shoe Nickname")
+                    TextField("Shoe Nickname", text: $shoeNickname)
+                        .padding()
+                }
                 .padding()
-            
-            TextField("Shoe Nickname", text: $shoeNickname)
+                
+                HStack{
+                    Text("Maximum Distance: ")
+                    TextField("Maximum Distance", value: $life, format: .number)
+                        .keyboardType(.decimalPad)
+                    Text("miles")
+                }
                 .padding()
+                
+                Button("Save"){
+                    sneakerLoaded = true
+                    save()
+                    //dismiss()
+                }
+                .padding()
+                .bold()
+            }
+            .toolbar{
+                Button("Dismiss"){
+                    dismiss()
+                }
+                .bold()
         }
+        
+        }
+    }
+    
+    func save() {
+        sneakerLoaded = true
+        dismiss()
     }
 }
 
