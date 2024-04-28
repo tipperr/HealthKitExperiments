@@ -11,6 +11,8 @@
 		D22B49252BD5EB2D00963D4D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B49242BD5EB2D00963D4D /* ContentView.swift */; };
 		D22B49272BD5EB2F00963D4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D22B49262BD5EB2F00963D4D /* Assets.xcassets */; };
 		D22B492A2BD5EB2F00963D4D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D22B49292BD5EB2F00963D4D /* Preview Assets.xcassets */; };
+		D28F3F652BDA883A002EB710 /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28F3F642BDA883A002EB710 /* Run.swift */; };
+		D28F3F672BDA8A2D002EB710 /* RunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28F3F662BDA8A2D002EB710 /* RunView.swift */; };
 		D2BE8FCA2BD6941F00CE35EC /* MySneakersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BE8FC92BD6941F00CE35EC /* MySneakersView.swift */; };
 		D2BE8FCC2BD6943400CE35EC /* Sneaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BE8FCB2BD6943400CE35EC /* Sneaker.swift */; };
 /* End PBXBuildFile section */
@@ -23,6 +25,8 @@
 		D22B49262BD5EB2F00963D4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D22B49292BD5EB2F00963D4D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D22B49302BD5EB7A00963D4D /* Steps.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Steps.entitlements; sourceTree = "<group>"; };
+		D28F3F642BDA883A002EB710 /* Run.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Run.swift; sourceTree = "<group>"; };
+		D28F3F662BDA8A2D002EB710 /* RunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunView.swift; sourceTree = "<group>"; };
 		D2BE8FC92BD6941F00CE35EC /* MySneakersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySneakersView.swift; sourceTree = "<group>"; };
 		D2BE8FCB2BD6943400CE35EC /* Sneaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sneaker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -61,6 +65,8 @@
 				D22B49302BD5EB7A00963D4D /* Steps.entitlements */,
 				D22B49222BD5EB2D00963D4D /* StepsApp.swift */,
 				D22B49242BD5EB2D00963D4D /* ContentView.swift */,
+				D28F3F642BDA883A002EB710 /* Run.swift */,
+				D28F3F662BDA8A2D002EB710 /* RunView.swift */,
 				D2BE8FC92BD6941F00CE35EC /* MySneakersView.swift */,
 				D2BE8FCB2BD6943400CE35EC /* Sneaker.swift */,
 				D22B49262BD5EB2F00963D4D /* Assets.xcassets */,
@@ -149,7 +155,9 @@
 			files = (
 				D22B49252BD5EB2D00963D4D /* ContentView.swift in Sources */,
 				D2BE8FCC2BD6943400CE35EC /* Sneaker.swift in Sources */,
+				D28F3F672BDA8A2D002EB710 /* RunView.swift in Sources */,
 				D2BE8FCA2BD6941F00CE35EC /* MySneakersView.swift in Sources */,
+				D28F3F652BDA883A002EB710 /* Run.swift in Sources */,
 				D22B49232BD5EB2D00963D4D /* StepsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

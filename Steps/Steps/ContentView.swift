@@ -13,7 +13,13 @@ struct ContentView: View {
     private let healthStore = HKHealthStore()
     
     @State private var showingShoeSheet = false
+    //@State private var sneaker = Sneaker.exampleSneaker
+    //@State private var sneaker: Sneaker
+    #if targetEnvironment(simulator)
     @State private var sneaker = Sneaker.exampleSneaker
+    #else
+    @State private var sneaker = Sneaker(purchaseDate: Date(), shoeName: "Default Shoe", life: 300.0, sneakerLoaded: false)
+    #endif
     
     var totalDistanceInMiles: Double {
             runningWorkouts.reduce(0.0) { total, workout in
@@ -35,9 +41,13 @@ struct ContentView: View {
                         .padding()
                     
                     Text("You are \(percentage, specifier: "%.1f")% through your shoe's life")
+                    Spacer()
+                    Text("You purchased your shoes on \(sneaker.purchaseDate.formatted(date: .numeric, time:    .omitted))")
+
                     
                     List(runningWorkouts.reversed(), id: \.self) { workout in
                         Text("\(workout.startDate.formatted(date: .numeric, time: .omitted)) \(String(format: "%.2f", workout.totalDistance?.doubleValue(for: .mile()) ?? 0)) miles")
+                        
                         
                     }
                     .onAppear {
@@ -64,7 +74,7 @@ struct ContentView: View {
             
         }
         .sheet(isPresented: $showingShoeSheet){
-            MySneakers()
+            MySneakers(sneaker: sneaker)
         }
         
     }
