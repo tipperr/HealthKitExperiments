@@ -6,20 +6,30 @@
 
 import SwiftUI
 
-struct Sneaker {
-    var purchaseDate: Date
-    var shoeName: String
-    var life: Double
-    var sneakerLoaded: Bool
+class Sneaker: ObservableObject {
+    @Published var purchaseDate: Date
+    @Published var shoeName: String
+    @Published var life: Double
+    @Published var sneakerLoaded: Bool
     
-    static let exampleSneaker: Sneaker = {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd"
-            
-            guard let date = dateFormatter.date(from: "2023-04-16") else {
-                fatalError("Failed to create a Date object from the string")
-            }
-            
-            return Sneaker(purchaseDate: date, shoeName: "Brooks Ghost", life: 300, sneakerLoaded: true)
-        }()
+    init(purchaseDate: Date, shoeName: String, life: Double, sneakerLoaded: Bool) {
+        self.purchaseDate = purchaseDate
+        self.shoeName = shoeName
+        self.life = life
+        self.sneakerLoaded = sneakerLoaded
+    }
+    
+    static let exampleSneaker = Sneaker(purchaseDate: Date(), shoeName: "Example", life: 300, sneakerLoaded: false)
+
+    
+//    static let exampleSneaker: Sneaker = {
+//            let dateFormatter = DateFormatter()
+//            dateFormatter.dateFormat = "yyyy-MM-dd"
+//            
+//            guard let date = dateFormatter.date(from: "2023-04-16") else {
+//                fatalError("Failed to create a Date object from the string")
+//            }
+//            
+//            return Sneaker(purchaseDate: date, shoeName: "Brooks Ghost", life: 300, sneakerLoaded: true)
+//        }()
 }

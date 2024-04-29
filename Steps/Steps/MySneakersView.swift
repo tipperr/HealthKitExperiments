@@ -13,8 +13,16 @@ struct MySneakers: View {
     @State private var life = 300.0
 //    @State private var exampleSneaker = Sneaker.exampleSneaker
     //@State var sneaker: Sneaker
-    @Binding var sneaker: Sneaker
+    //@Binding var sneaker: Sneaker
+    @ObservedObject var sneaker: Sneaker
     //@State private var sneakerLoaded = false
+    
+//    init(sneaker: Binding<Sneaker>) {
+//            _sneaker = sneaker
+//            _purchaseDate = State(initialValue: sneaker.wrappedValue.purchaseDate)
+//            _shoeNickname = State(initialValue: sneaker.wrappedValue.shoeName)
+//            _life = State(initialValue: sneaker.wrappedValue.life)
+//        }
     
     var body: some View {
         NavigationView{
@@ -55,9 +63,9 @@ struct MySneakers: View {
                     .padding()
                     .bold()
                     
-//                    Button("Remove Sneaker"){
-//                        removeSneaker()
-//                    }
+                    Button("Remove Sneaker"){
+                        //removeSneaker()
+                    }
                 }
             }
             .toolbar{
@@ -81,10 +89,14 @@ struct MySneakers: View {
     }
     
     func removeSneaker() {
-        sneaker.sneakerLoaded = false
-        sneaker.purchaseDate = Date()
-        sneaker.shoeName = ""
-        sneaker.life = 300
+        //sneaker.sneakerLoaded = false
+//        purchaseDate = Date()
+//        shoeNickname = ""
+//        life = 300
+//        sneaker.purchaseDate = purchaseDate
+//        sneaker.shoeName = shoeNickname
+//        sneaker.life = life
+        //sneaker = Sneaker(purchaseDate: Date(), shoeName: "", life: 300, sneakerLoaded: false)
         dismiss()
     }
 }

@@ -16,9 +16,10 @@ struct ContentView: View {
     //@State private var sneaker = Sneaker.exampleSneaker
     //@State private var sneaker: Sneaker
     #if targetEnvironment(simulator)
-    @State private var sneaker = Sneaker.exampleSneaker
+    //@State private var sneaker = Sneaker.exampleSneaker
+    @ObservedObject private var sneaker: Sneaker = Sneaker.exampleSneaker
     #else
-    @State private var sneaker = Sneaker(purchaseDate: Date(), shoeName: "Default Shoe", life: 300.0, sneakerLoaded: Bool())
+    @ObservedObject private var sneaker = Sneaker(purchaseDate: Date(), shoeName: "Default Shoe", life: 300.0, sneakerLoaded: Bool())
     #endif
     
     var totalDistanceInMiles: Double {
@@ -79,8 +80,11 @@ struct ContentView: View {
             
         }
         .sheet(isPresented: $showingShoeSheet){
-            MySneakers(sneaker: $sneaker)
+            MySneakers(sneaker: sneaker)
         }
+        .onReceive(sneaker.$purchaseDate) { _ in
+                    fetchRunningWorkouts()
+                }
         
     }
     
