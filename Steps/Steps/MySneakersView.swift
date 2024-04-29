@@ -11,8 +11,9 @@ struct MySneakers: View {
     @State private var purchaseDate = Date()
     @State private var shoeNickname = ""
     @State private var life = 300.0
-    //@State private var sneaker = Sneaker.exampleSneaker
-    @State var sneaker: Sneaker
+//    @State private var exampleSneaker = Sneaker.exampleSneaker
+    //@State var sneaker: Sneaker
+    @Binding var sneaker: Sneaker
     //@State private var sneakerLoaded = false
     
     var body: some View {
@@ -42,17 +43,21 @@ struct MySneakers: View {
                     .padding()
                     
                     
+                    
                     Button("Save"){
                         //sneakerLoaded = true
                         //sneakerLoaded.toggle()
-                        sneaker.sneakerLoaded = true
+                        //sneaker.sneakerLoaded = true
                         //print("Sneaker loaded? \(sneakerLoaded)")
                         save()
-                        dismiss()
                         //dismiss()
                     }
                     .padding()
                     .bold()
+                    
+//                    Button("Remove Sneaker"){
+//                        removeSneaker()
+//                    }
                 }
             }
             .toolbar{
@@ -67,15 +72,23 @@ struct MySneakers: View {
     }
     
     func save() {
-        //sneaker.sneakerLoaded = true
+        sneaker.sneakerLoaded = true
         print(sneaker.sneakerLoaded)
         sneaker.purchaseDate = purchaseDate
         sneaker.shoeName = shoeNickname
         sneaker.life = life
-        //dismiss()
+        dismiss()
+    }
+    
+    func removeSneaker() {
+        sneaker.sneakerLoaded = false
+        sneaker.purchaseDate = Date()
+        sneaker.shoeName = ""
+        sneaker.life = 300
+        dismiss()
     }
 }
 
-#Preview {
-    MySneakers(sneaker: .exampleSneaker)
-}
+/*#Preview {
+    MySneakers(sneaker: $Sneaker.exampleSneaker)
+}*/

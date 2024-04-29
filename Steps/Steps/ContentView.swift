@@ -18,7 +18,7 @@ struct ContentView: View {
     #if targetEnvironment(simulator)
     @State private var sneaker = Sneaker.exampleSneaker
     #else
-    @State private var sneaker = Sneaker(purchaseDate: Date(), shoeName: "Default Shoe", life: 300.0, sneakerLoaded: false)
+    @State private var sneaker = Sneaker(purchaseDate: Date(), shoeName: "Default Shoe", life: 300.0, sneakerLoaded: Bool())
     #endif
     
     var totalDistanceInMiles: Double {
@@ -59,12 +59,17 @@ struct ContentView: View {
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing){
                         Button("My Sneakers", systemImage: "shoe.fill"){
+                            print("Sneaker loaded \(sneaker.sneakerLoaded)")
                             showingShoeSheet = true
                         }
                     }
                 }
             } else {
-                Button(action: { showingShoeSheet = true}) {
+                Button(action: {
+                    showingShoeSheet = true
+                    print("Sneaker loaded \(sneaker.sneakerLoaded)")
+
+                }) {
                 ContentUnavailableView("No sneakers loaded", systemImage: "shoe.2.fill", description: Text("Tap to add your sneakers!"))
             }
 
@@ -74,7 +79,7 @@ struct ContentView: View {
             
         }
         .sheet(isPresented: $showingShoeSheet){
-            MySneakers(sneaker: sneaker)
+            MySneakers(sneaker: $sneaker)
         }
         
     }
