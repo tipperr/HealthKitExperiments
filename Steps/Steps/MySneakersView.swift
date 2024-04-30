@@ -18,6 +18,8 @@ struct MySneakers: View {
     //var onRemoveSneaker: () -> Void
     //@State private var sneakerLoaded = false
     
+    let sneakersKey = "Sneakers"
+    
 //    init(sneaker: Binding<Sneaker>) {
 //            _sneaker = sneaker
 //            _purchaseDate = State(initialValue: sneaker.wrappedValue.purchaseDate)
@@ -100,11 +102,17 @@ struct MySneakers: View {
         sneaker.purchaseDate = purchaseDate
         sneaker.shoeName = shoeNickname
         sneaker.life = life
+        let encoder = JSONEncoder()
+            if let encoded = try? encoder.encode(sneaker) {
+                UserDefaults.standard.set(encoded, forKey: sneakersKey)
+            }
         dismiss()
     }
     
+    
     func removeSneaker() {
         sneaker.sneakerLoaded = false
+        UserDefaults.standard.removeObject(forKey: sneakersKey)
         print("function: \(sneaker.sneakerLoaded)")
 //        purchaseDate = Date()
 //        shoeNickname = ""

@@ -12,6 +12,9 @@ struct ContentView: View {
     @State private var runningWorkouts: [HKWorkout] = []
     private let healthStore = HKHealthStore()
     
+    let sneakersKey = "Sneakers"
+
+    
     @State private var showingShoeSheet = false
     //@State private var sneaker = Sneaker.exampleSneaker
     //@State private var sneaker: Sneaker
@@ -21,6 +24,13 @@ struct ContentView: View {
     #else
     @ObservedObject private var sneaker = Sneaker(purchaseDate: Date(), shoeName: "Default Shoe", life: 300.0, sneakerLoaded: Bool())
     #endif
+    
+    init() {
+            if let savedSneakerData = UserDefaults.standard.data(forKey: sneakersKey),
+               let decodedSneaker = try? JSONDecoder().decode(Sneaker.self, from: savedSneakerData) {
+                self.sneaker = decodedSneaker
+            }
+        }
     
     var totalDistanceInMiles: Double {
             runningWorkouts.reduce(0.0) { total, workout in
@@ -43,7 +53,7 @@ struct ContentView: View {
                     
                     Text("You are \(percentage, specifier: "%.1f")% through your shoe's life")
                     Spacer()
-                    Text("You purchased your shoes on \(sneaker.purchaseDate.formatted(date: .numeric, time:    .omitted))")
+                    Text("You purchased your \(sneaker.shoeName)s on \(sneaker.purchaseDate.formatted(date: .numeric, time:    .omitted))")
 
                     
                     List(runningWorkouts.reversed(), id: \.self) { workout in
