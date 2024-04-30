@@ -51,6 +51,8 @@ struct ContentView: View {
                         
                         
                     }
+                    
+                    //Button("Remove Sneaker", action: removeSneaker)
                     .onAppear {
                         requestAuthorization()
                         fetchRunningWorkouts()
@@ -80,7 +82,7 @@ struct ContentView: View {
             
         }
         .sheet(isPresented: $showingShoeSheet){
-            MySneakers(sneaker: sneaker)
+            MySneakers(sneaker: sneaker/*, onRemoveSneaker: removeSneaker*/)
         }
         .onReceive(sneaker.$purchaseDate) { _ in
                     fetchRunningWorkouts()
@@ -152,6 +154,10 @@ struct ContentView: View {
         
         healthStore.execute(query)
     }
+    
+    private func removeSneaker() {
+            sneaker.sneakerLoaded = false
+        }
 
 }
 

@@ -15,6 +15,7 @@ struct MySneakers: View {
     //@State var sneaker: Sneaker
     //@Binding var sneaker: Sneaker
     @ObservedObject var sneaker: Sneaker
+    //var onRemoveSneaker: () -> Void
     //@State private var sneakerLoaded = false
     
 //    init(sneaker: Binding<Sneaker>) {
@@ -63,17 +64,31 @@ struct MySneakers: View {
                     .padding()
                     .bold()
                     
-                    Button("Remove Sneaker"){
+                    //Button("Remove Sneaker", action: removeSneaker)//{
+                        //print("button: \(sneaker.sneakerLoaded)")
                         //removeSneaker()
-                    }
+                    //}
                 }
             }
             .toolbar{
-                Button("Dismiss"){
-                    print("Dismissing")
-                    dismiss()
+                ToolbarItem(placement: .cancellationAction){
+                    Button("Dismiss"){
+                        print("Dismissing")
+                        dismiss()
+                    }
+                    .bold()
                 }
-                .bold()
+                
+                if sneaker.sneakerLoaded == true {
+                    ToolbarItem(placement: .destructiveAction){
+                        Button("Remove Sneaker", role: .destructive){
+                            removeSneaker()
+                        }
+                        .bold()
+                        .foregroundStyle(.red)
+                    }
+                }
+                    
         }
         
         }
@@ -89,13 +104,15 @@ struct MySneakers: View {
     }
     
     func removeSneaker() {
-        //sneaker.sneakerLoaded = false
+        sneaker.sneakerLoaded = false
+        print("function: \(sneaker.sneakerLoaded)")
 //        purchaseDate = Date()
 //        shoeNickname = ""
 //        life = 300
 //        sneaker.purchaseDate = purchaseDate
 //        sneaker.shoeName = shoeNickname
 //        sneaker.life = life
+//        onRemoveSneaker()
         //sneaker = Sneaker(purchaseDate: Date(), shoeName: "", life: 300, sneakerLoaded: false)
         dismiss()
     }
