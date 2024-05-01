@@ -15,6 +15,7 @@ struct MySneakers: View {
     //@State var sneaker: Sneaker
     //@Binding var sneaker: Sneaker
     @ObservedObject var sneaker: Sneaker
+    @State private var showingDeleteAlert = false
     //var onRemoveSneaker: () -> Void
     //@State private var sneakerLoaded = false
     
@@ -84,7 +85,8 @@ struct MySneakers: View {
                 if sneaker.sneakerLoaded == true {
                     ToolbarItem(placement: .destructiveAction){
                         Button("Remove Sneaker", role: .destructive){
-                            removeSneaker()
+                            showingDeleteAlert = true
+                            //removeSneaker()
                         }
                         .bold()
                         .foregroundStyle(.red)
@@ -92,6 +94,15 @@ struct MySneakers: View {
                 }
                     
         }
+            .alert(isPresented: $showingDeleteAlert){
+                Alert(
+                    title: Text("Are you sure you want to delete this sneaker?"),
+                      message: Text("This can't be undone"),
+                    primaryButton: .destructive(Text("Delete")) {
+                        removeSneaker()
+                    },
+                    secondaryButton: .default(Text("Cancel")))
+            }
         
         }
     }
