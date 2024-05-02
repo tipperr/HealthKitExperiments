@@ -56,11 +56,18 @@ struct ContentView: View {
                     Text("You purchased your \(sneaker.shoeName)s on \(sneaker.purchaseDate.formatted(date: .numeric, time:    .omitted))")
 
                     
+//                    List(runningWorkouts.reversed(), id: \.self) { workout in
+//                        Text("\(workout.startDate.formatted(date: .numeric, time: .omitted)) \(String(format: "%.2f", workout.totalDistance?.doubleValue(for: .mile()) ?? 0)) miles")
+//                        
+//                        
+//                    }
+                    
                     List(runningWorkouts.reversed(), id: \.self) { workout in
-                        Text("\(workout.startDate.formatted(date: .numeric, time: .omitted)) \(String(format: "%.2f", workout.totalDistance?.doubleValue(for: .mile()) ?? 0)) miles")
-                        
-                        
+                        NavigationLink(destination: RunView(workout: workout)) {
+                            Text("\(workout.startDate.formatted(date: .numeric, time: .omitted)) \(String(format: "%.2f", workout.totalDistance?.doubleValue(for: .mile()) ?? 0)) miles")
+                        }
                     }
+
                     
                     //Button("Remove Sneaker", action: removeSneaker)
                     .onAppear {

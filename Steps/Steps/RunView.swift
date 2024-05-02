@@ -6,25 +6,45 @@
 //
 
 import SwiftUI
+import HealthKit
 
 struct RunView: View {
-    let run: Run
-    
+    let workout: HKWorkout
+    @State private var runCounted = true
+
     var body: some View {
-        Text("Your run for \(run.workoutDate.formatted(date: .abbreviated, time: .omitted)): ")
-            .font(.title2)
-        HStack{
-            Text(String(run.distance))
+        VStack {
+            Text("Run Details")
+                .font(.title)
                 .padding()
-                .font(.title2)
-            Text("Miles")
-                .font(.title2)
+            
+            Text("Date: \(workout.startDate.formatted(date: .long, time: .omitted))")
+                .padding()
+            
+            Text("Time: \(workout.startDate.formatted(date: .omitted, time: .shortened))")
+                .padding()
+            
+            Text("Distance: \(String(format: "%.2f", workout.totalDistance?.doubleValue(for: .mile()) ?? 0)) miles")
+                .padding()
+            
+            Toggle("Count workout", isOn: $runCounted)
+                .frame(width: 200)
+            
+            Spacer()
+            
         }
-        
-        //Toggle("Count this workout", isOn: run.workoutCounted)
     }
 }
 
-#Preview {
-    RunView(run: .exampleRun)
+struct RunView_Previews: PreviewProvider {
+    static var previews: some View {
+        let mockWorkout = HKWorkout(activityType: .running, start: Date(), end: Date(), duration: 3600, totalEnergyBurned: nil, totalDistance: HKQuantity(unit: .mile(), doubleValue: 5.0), metadata: nil)
+        
+        return RunView(workout: mockWorkout)
+    }
 }
+
+
+//#Preview {
+//    RunView(workout: )
+//}
