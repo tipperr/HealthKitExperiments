@@ -64,7 +64,12 @@ struct ContentView: View {
                     
                     List(runningWorkouts.reversed(), id: \.self) { workout in
                         NavigationLink(destination: RunView(workout: workout)) {
-                            Text("\(workout.startDate.formatted(date: .numeric, time: .omitted)) \(String(format: "%.2f", workout.totalDistance?.doubleValue(for: .mile()) ?? 0)) miles")
+                            HStack{
+                                Text("\(workout.startDate.formatted(date: .numeric, time: .omitted)) ")
+                                Spacer()
+                                Text("\(String(format: "%.2f", workout.totalDistance?.doubleValue(for: .mile()) ?? 0)) miles")
+                                Spacer()
+                            }
                         }
                     }
 
