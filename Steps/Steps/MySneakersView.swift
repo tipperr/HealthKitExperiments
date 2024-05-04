@@ -6,21 +6,21 @@
 
 import SwiftUI
 
+// Define a view to manage sneaker details
 struct MySneakers: View {
+    // Environment property for dismissing the view
     @Environment(\.dismiss) var dismiss
-    @State private var purchaseDate: Date //= sneaker.purchaseDate //= Date()
+    // State properties for managing user input
+    @State private var purchaseDate: Date
     @State private var shoeNickname = ""
     @State private var life = 300.0
-//    @State private var exampleSneaker = Sneaker.exampleSneaker
-    //@State var sneaker: Sneaker
-    //@Binding var sneaker: Sneaker
     @ObservedObject var sneaker: Sneaker
     @State private var showingDeleteAlert = false
-    //var onRemoveSneaker: () -> Void
-    //@State private var sneakerLoaded = false
     
+    // Key for storing sneaker data in UserDefaults
     let sneakersKey = "Sneakers"
     
+    // Initialize the view with a sneaker object
     init(sneaker: Sneaker) {
         self.sneaker = sneaker
         _purchaseDate = State(initialValue: sneaker.purchaseDate)
@@ -28,21 +28,17 @@ struct MySneakers: View {
         _life = State(initialValue: sneaker.life)
         }
     
-//    init(sneaker: Binding<Sneaker>) {
-//            _sneaker = sneaker
-//            _purchaseDate = State(initialValue: sneaker.wrappedValue.purchaseDate)
-//            _shoeNickname = State(initialValue: sneaker.wrappedValue.shoeName)
-//            _life = State(initialValue: sneaker.wrappedValue.life)
-//        }
-    
+    // Body of the view
     var body: some View {
         NavigationView{
             Form{
                 VStack {
+                    // Date picker for selecting purchase date
                     DatePicker("Purchase Date:", selection: $purchaseDate, displayedComponents: .date)
                         .padding()
                     
                     HStack{
+                        // Text field for entering shoe nickname
                         Text("Shoe Nickname:")
                         TextField("My Shoe", text: $shoeNickname)
                             .padding()
@@ -51,8 +47,8 @@ struct MySneakers: View {
                     .padding()
                     
                     HStack{
+                        // Text field for entering maximum distance a shoe should travel
                         Text("Max Distance: ")
-                        
                         TextField("", value: $life, format: .number)
                             .keyboardType(.decimalPad)
                             .padding()
@@ -62,25 +58,18 @@ struct MySneakers: View {
                     .padding()
                     
                     
-                    
+                    // Button to save sneaker details
                     Button("Save"){
-                        //sneakerLoaded = true
-                        //sneakerLoaded.toggle()
-                        //sneaker.sneakerLoaded = true
-                        //print("Sneaker loaded? \(sneakerLoaded)")
                         save()
-                        //dismiss()
                     }
                     .padding()
                     .bold()
-                    
-                    //Button("Remove Sneaker", action: removeSneaker)//{
-                        //print("button: \(sneaker.sneakerLoaded)")
-                        //removeSneaker()
-                    //}
                 }
             }
+            // Toolbar items for navigation bar
+
             .toolbar{
+                // Button to dismiss the view
                 ToolbarItem(placement: .cancellationAction){
                     Button("Dismiss"){
                         print("Dismissing")
@@ -89,6 +78,7 @@ struct MySneakers: View {
                     .bold()
                 }
                 
+                // Button to remove sneaker
                 if sneaker.sneakerLoaded == true {
                     ToolbarItem(placement: .destructiveAction){
                         Button("Remove Sneaker", role: .destructive){
@@ -101,6 +91,7 @@ struct MySneakers: View {
                 }
                     
         }
+            // Alert for confirming sneaker deletion
             .alert(isPresented: $showingDeleteAlert){
                 Alert(
                     title: Text("Are you sure you want to delete this sneaker?"),
@@ -113,7 +104,7 @@ struct MySneakers: View {
         
         }
     }
-    
+    // Function to save sneaker details
     func save() {
         sneaker.sneakerLoaded = true
         print(sneaker.sneakerLoaded)
@@ -127,7 +118,7 @@ struct MySneakers: View {
         dismiss()
     }
     
-    
+    // Function to remove sneaker
     func removeSneaker() {
         sneaker.sneakerLoaded = false
         UserDefaults.standard.removeObject(forKey: sneakersKey)
@@ -135,11 +126,6 @@ struct MySneakers: View {
         sneaker.purchaseDate = Date()
         sneaker.shoeName =  ""
         sneaker.life = 300
-//        sneaker.purchaseDate = purchaseDate
-//        sneaker.shoeName = shoeNickname
-//        sneaker.life = life
-//        onRemoveSneaker()
-        //sneaker = Sneaker(purchaseDate: Date(), shoeName: "", life: 300, sneakerLoaded: false)
         dismiss()
     }
 }

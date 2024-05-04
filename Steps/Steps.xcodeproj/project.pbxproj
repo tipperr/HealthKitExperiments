@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D227CCEB2BE6BDAF0043A8B5 /* EmptySneakerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D227CCEA2BE6BDAF0043A8B5 /* EmptySneakerView.swift */; };
 		D22B49232BD5EB2D00963D4D /* StepsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B49222BD5EB2D00963D4D /* StepsApp.swift */; };
 		D22B49252BD5EB2D00963D4D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B49242BD5EB2D00963D4D /* ContentView.swift */; };
 		D22B49272BD5EB2F00963D4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D22B49262BD5EB2F00963D4D /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		D203F43E2BD5F41C00396457 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D227CCEA2BE6BDAF0043A8B5 /* EmptySneakerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySneakerView.swift; sourceTree = "<group>"; };
 		D22B491F2BD5EB2D00963D4D /* Steps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Steps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D22B49222BD5EB2D00963D4D /* StepsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsApp.swift; sourceTree = "<group>"; };
 		D22B49242BD5EB2D00963D4D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				D22B49302BD5EB7A00963D4D /* Steps.entitlements */,
 				D22B49222BD5EB2D00963D4D /* StepsApp.swift */,
 				D22B49242BD5EB2D00963D4D /* ContentView.swift */,
+				D227CCEA2BE6BDAF0043A8B5 /* EmptySneakerView.swift */,
 				D28F3F642BDA883A002EB710 /* Run.swift */,
 				D28F3F662BDA8A2D002EB710 /* RunView.swift */,
 				D2BE8FC92BD6941F00CE35EC /* MySneakersView.swift */,
@@ -154,6 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D22B49252BD5EB2D00963D4D /* ContentView.swift in Sources */,
+				D227CCEB2BE6BDAF0043A8B5 /* EmptySneakerView.swift in Sources */,
 				D2BE8FCC2BD6943400CE35EC /* Sneaker.swift in Sources */,
 				D28F3F672BDA8A2D002EB710 /* RunView.swift in Sources */,
 				D2BE8FCA2BD6941F00CE35EC /* MySneakersView.swift in Sources */,

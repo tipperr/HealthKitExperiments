@@ -11,20 +11,16 @@ import HealthKit
 struct ContentView: View {
     @State private var runningWorkouts: [HKWorkout] = []
     private let healthStore = HKHealthStore()
-    
-    let sneakersKey = "Sneakers"
-
-    
     @State private var showingShoeSheet = false
-    //@State private var sneaker = Sneaker.exampleSneaker
-    //@State private var sneaker: Sneaker
     #if targetEnvironment(simulator)
-    //@State private var sneaker = Sneaker.exampleSneaker
     @ObservedObject private var sneaker: Sneaker = Sneaker.exampleSneaker
     #else
     @ObservedObject private var sneaker = Sneaker(purchaseDate: Date(), shoeName: "Default Shoe", life: 300.0, sneakerLoaded: Bool())
     #endif
     
+    let sneakersKey = "Sneakers"
+    
+    // Initialize with saved sneaker data if available
     init() {
             if let savedSneakerData = UserDefaults.standard.data(forKey: sneakersKey),
                let decodedSneaker = try? JSONDecoder().decode(Sneaker.self, from: savedSneakerData) {
@@ -54,13 +50,6 @@ struct ContentView: View {
                     Text("You are \(percentage, specifier: "%.1f")% through your shoe's life")
                     Spacer()
                     Text("You purchased your \(sneaker.shoeName)s on \(sneaker.purchaseDate.formatted(date: .numeric, time:    .omitted))")
-
-                    
-//                    List(runningWorkouts.reversed(), id: \.self) { workout in
-//                        Text("\(workout.startDate.formatted(date: .numeric, time: .omitted)) \(String(format: "%.2f", workout.totalDistance?.doubleValue(for: .mile()) ?? 0)) miles")
-//
-//
-//                    }
                     
                     List(runningWorkouts.reversed(), id: \.self) { workout in
                         NavigationLink(destination: RunView(workout: workout)) {
@@ -80,7 +69,6 @@ struct ContentView: View {
                         fetchRunningWorkouts()
                     }
                 }
-                //.navigationTitle("Total Distance")
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing){
                         Button("My Sneakers", systemImage: "shoe.fill"){
@@ -90,14 +78,7 @@ struct ContentView: View {
                     }
                 }
             } else {
-                Button(action: {
-                    showingShoeSheet = true
-                    print("Sneaker loaded \(sneaker.sneakerLoaded)")
-
-                }) {
-                ContentUnavailableView("No sneakers loaded", systemImage: "shoe.2.fill", description: Text("Tap to add your sneakers!"))
-            }
-
+                EmptySneakerView(showingShoeSheet: $showingShoeSheet)
             }
             
             
@@ -123,30 +104,6 @@ struct ContentView: View {
             }
         }
     }
-    
-    /*private func fetchRunningWorkouts() {
-        let workoutType = HKObjectType.workoutType()
-        let predicate = HKQuery.predicateForWorkouts(with: .running)
-        let query = HKSampleQuery(sampleType: workoutType,
-                                  predicate: predicate,
-                                  limit: HKObjectQueryNoLimit,
-                                  sortDescriptors: nil) { query, samples, error in
-            if let error = error {
-                print("Failed to fetch running workouts: \(error.localizedDescription)")
-                return
-            }
-            
-            guard let samples = samples as? [HKWorkout] else {
-                return
-            }
-            
-            DispatchQueue.main.async {
-                self.runningWorkouts = samples
-            }
-        }
-        
-        healthStore.execute(query)
-    }*/
     
     private func fetchRunningWorkouts() {
         let workoutType = HKObjectType.workoutType()
