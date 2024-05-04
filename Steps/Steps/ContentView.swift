@@ -58,8 +58,8 @@ struct ContentView: View {
                     
 //                    List(runningWorkouts.reversed(), id: \.self) { workout in
 //                        Text("\(workout.startDate.formatted(date: .numeric, time: .omitted)) \(String(format: "%.2f", workout.totalDistance?.doubleValue(for: .mile()) ?? 0)) miles")
-//                        
-//                        
+//
+//
 //                    }
                     
                     List(runningWorkouts.reversed(), id: \.self) { workout in

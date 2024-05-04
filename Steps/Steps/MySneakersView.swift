@@ -8,7 +8,7 @@ import SwiftUI
 
 struct MySneakers: View {
     @Environment(\.dismiss) var dismiss
-    @State private var purchaseDate = Date()
+    @State private var purchaseDate: Date //= sneaker.purchaseDate //= Date()
     @State private var shoeNickname = ""
     @State private var life = 300.0
 //    @State private var exampleSneaker = Sneaker.exampleSneaker
@@ -20,6 +20,13 @@ struct MySneakers: View {
     //@State private var sneakerLoaded = false
     
     let sneakersKey = "Sneakers"
+    
+    init(sneaker: Sneaker) {
+        self.sneaker = sneaker
+        _purchaseDate = State(initialValue: sneaker.purchaseDate)
+        _shoeNickname = State(initialValue: sneaker.shoeName)
+        _life = State(initialValue: sneaker.life)
+        }
     
 //    init(sneaker: Binding<Sneaker>) {
 //            _sneaker = sneaker
@@ -125,9 +132,9 @@ struct MySneakers: View {
         sneaker.sneakerLoaded = false
         UserDefaults.standard.removeObject(forKey: sneakersKey)
         print("function: \(sneaker.sneakerLoaded)")
-//        purchaseDate = Date()
-//        shoeNickname = ""
-//        life = 300
+        sneaker.purchaseDate = Date()
+        sneaker.shoeName =  ""
+        sneaker.life = 300
 //        sneaker.purchaseDate = purchaseDate
 //        sneaker.shoeName = shoeNickname
 //        sneaker.life = life
