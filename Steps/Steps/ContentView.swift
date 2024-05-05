@@ -42,39 +42,17 @@ struct ContentView: View {
         NavigationStack{
             
             if sneaker.sneakerLoaded == true {
-                VStack {
-                    Text("Total Distance: \(totalDistanceInMiles, specifier: "%.2f") miles")
-                        .font(.title)
-                        .padding()
+                StatisticsView(totalDistanceInMiles: totalDistanceInMiles, percentage: percentage, sneaker: sneaker)
+                
+                RunningWorkoutsListView(runningWorkouts: runningWorkouts)
                     
-                    Text("You are \(percentage, specifier: "%.1f")% through your shoe's life")
-                    Spacer()
-                    Text("You purchased your \(sneaker.shoeName)s on \(sneaker.purchaseDate.formatted(date: .numeric, time:    .omitted))")
-                    
-                    List(runningWorkouts.reversed(), id: \.self) { workout in
-                        NavigationLink(destination: RunView(workout: workout)) {
-                            HStack{
-                                Text("\(workout.startDate.formatted(date: .numeric, time: .omitted)) ")
-                                Spacer()
-                                Text("\(String(format: "%.2f", workout.totalDistance?.doubleValue(for: .mile()) ?? 0)) miles")
-                                Spacer()
-                            }
-                        }
-                    }
-
-                    
-                    //Button("Remove Sneaker", action: removeSneaker)
                     .onAppear {
                         requestAuthorization()
                         fetchRunningWorkouts()
                     }
-                }
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing){
-                        Button("My Sneakers", systemImage: "shoe.fill"){
-                            print("Sneaker loaded \(sneaker.sneakerLoaded)")
-                            showingShoeSheet = true
-                        }
+                        MySneakersButtonView(showingShoeSheet: $showingShoeSheet)
                     }
                 }
             } else {
