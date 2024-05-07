@@ -12,6 +12,8 @@ struct ContentView: View {
     @State private var runningWorkouts: [HKWorkout] = []
     private let healthStore = HKHealthStore()
     @State private var showingShoeSheet = false
+    private let runningWorkoutsDeliveryIdentifier = "com.steps.runningWorkoutsDelivery"
+    @StateObject private var backgroundUpdateHandler = BackgroundUpdateHandler()
     #if targetEnvironment(simulator)
     @ObservedObject private var sneaker: Sneaker = Sneaker.exampleSneaker
     #else
@@ -49,6 +51,7 @@ struct ContentView: View {
                     .onAppear {
                         requestAuthorization()
                         fetchRunningWorkouts()
+                        setupBackgroundDelivery()
                     }
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing){
@@ -118,6 +121,37 @@ struct ContentView: View {
     private func removeSneaker() {
             sneaker.sneakerLoaded = false
         }
+    
+    private func setupBackgroundDelivery() {
+        let workoutType = HKObjectType.workoutType()
+        let predicate = HKQuery.predicateForWorkouts(with: .running)
+        
+        let deliveryQuery = HKObserverQuery(sampleType: workoutType, predicate: predicate) { query, completionHandler, error in
+            if let error = error {
+                print("Background delivery query failed: \(error.localizedDescription)")
+                return
+            }
+            
+            // Handle the new data received in the completion handler
+            
+            completionHandler()
+        }
+        
+        healthStore.execute(deliveryQuery)
+        
+        healthStore.enableBackgroundDelivery(for: workoutType, frequency: .immediate) { success, error in
+            if let error = error {
+                print("Failed to enable background delivery: \(error.localizedDescription)")
+                return
+            }
+            
+            if success {
+                print("Background delivery enabled successfully.")
+            } else {
+                print("Failed to enable background delivery.")
+            }
+        }
+    }
 
 }
 

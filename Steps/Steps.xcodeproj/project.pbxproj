@@ -11,6 +11,7 @@
 		D227CCED2BE6D1430043A8B5 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D227CCEC2BE6D1420043A8B5 /* StatisticsView.swift */; };
 		D227CCEF2BE7223E0043A8B5 /* MySneakersButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D227CCEE2BE7223E0043A8B5 /* MySneakersButtonView.swift */; };
 		D227CCF12BE7234A0043A8B5 /* RunningWorkoutsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D227CCF02BE7234A0043A8B5 /* RunningWorkoutsListView.swift */; };
+		D227CCF32BEAF6FA0043A8B5 /* BackgroundUpdateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D227CCF22BEAF6FA0043A8B5 /* BackgroundUpdateHandler.swift */; };
 		D22B49232BD5EB2D00963D4D /* StepsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B49222BD5EB2D00963D4D /* StepsApp.swift */; };
 		D22B49252BD5EB2D00963D4D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B49242BD5EB2D00963D4D /* ContentView.swift */; };
 		D22B49272BD5EB2F00963D4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D22B49262BD5EB2F00963D4D /* Assets.xcassets */; };
@@ -27,6 +28,7 @@
 		D227CCEC2BE6D1420043A8B5 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
 		D227CCEE2BE7223E0043A8B5 /* MySneakersButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySneakersButtonView.swift; sourceTree = "<group>"; };
 		D227CCF02BE7234A0043A8B5 /* RunningWorkoutsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningWorkoutsListView.swift; sourceTree = "<group>"; };
+		D227CCF22BEAF6FA0043A8B5 /* BackgroundUpdateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundUpdateHandler.swift; sourceTree = "<group>"; };
 		D22B491F2BD5EB2D00963D4D /* Steps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Steps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D22B49222BD5EB2D00963D4D /* StepsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsApp.swift; sourceTree = "<group>"; };
 		D22B49242BD5EB2D00963D4D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,8 +55,6 @@
 		D22B49162BD5EB2D00963D4D = {
 			isa = PBXGroup;
 			children = (
-				D227CCF02BE7234A0043A8B5 /* RunningWorkoutsListView.swift */,
-				D227CCEE2BE7223E0043A8B5 /* MySneakersButtonView.swift */,
 				D22B49212BD5EB2D00963D4D /* Steps */,
 				D22B49202BD5EB2D00963D4D /* Products */,
 			);
@@ -73,6 +73,9 @@
 			children = (
 				D203F43E2BD5F41C00396457 /* Info.plist */,
 				D22B49302BD5EB7A00963D4D /* Steps.entitlements */,
+				D227CCF22BEAF6FA0043A8B5 /* BackgroundUpdateHandler.swift */,
+				D227CCF02BE7234A0043A8B5 /* RunningWorkoutsListView.swift */,
+				D227CCEE2BE7223E0043A8B5 /* MySneakersButtonView.swift */,
 				D22B49222BD5EB2D00963D4D /* StepsApp.swift */,
 				D227CCEC2BE6D1420043A8B5 /* StatisticsView.swift */,
 				D22B49242BD5EB2D00963D4D /* ContentView.swift */,
@@ -169,6 +172,7 @@
 				D227CCEB2BE6BDAF0043A8B5 /* EmptySneakerView.swift in Sources */,
 				D227CCEF2BE7223E0043A8B5 /* MySneakersButtonView.swift in Sources */,
 				D2BE8FCC2BD6943400CE35EC /* Sneaker.swift in Sources */,
+				D227CCF32BEAF6FA0043A8B5 /* BackgroundUpdateHandler.swift in Sources */,
 				D28F3F672BDA8A2D002EB710 /* RunView.swift in Sources */,
 				D2BE8FCA2BD6941F00CE35EC /* MySneakersView.swift in Sources */,
 				D227CCF12BE7234A0043A8B5 /* RunningWorkoutsListView.swift in Sources */,
