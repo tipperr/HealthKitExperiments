@@ -55,6 +55,9 @@ struct ContentView: View {
                         MySneakersButtonView(showingShoeSheet: $showingShoeSheet)
                     }
                 }
+                .refreshable {
+                    fetchRunningWorkouts()
+                }
             } else {
                 EmptySneakerView(showingShoeSheet: $showingShoeSheet)
             }
