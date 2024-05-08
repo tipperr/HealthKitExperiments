@@ -7,6 +7,7 @@
 
 import SwiftUI
 import HealthKit
+import UserNotifications
 
 struct ContentView: View {
     @State private var runningWorkouts: [HKWorkout] = []
@@ -61,6 +62,47 @@ struct ContentView: View {
                 .refreshable {
                     fetchRunningWorkouts()
                 }
+//                Button(action: {
+//                                        scheduleLocalNotification()
+//                }) {
+//                    Text("Schedule Local Notification")
+//                        .padding()
+//                        .foregroundColor(.white)
+//                        .background(Color.blue)
+//                        .cornerRadius(10)
+//                }
+//                                    .padding()
+                
+                VStack {
+                    Button("Request Permission") {
+                        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+                            if success {
+                                print("All set!")
+                            } else if let error {
+                                print(error.localizedDescription)
+                            }
+                        }
+                    }
+
+                    Button("Schedule Notification") {
+                        let content = UNMutableNotificationContent()
+                        let formattedPercentage = String(format: "%.1f", percentage)
+                        content.title = "New workout!"
+                        content.subtitle = "You're \(formattedPercentage)% through your \(sneaker.shoeName)'s life!"
+                        content.sound = UNNotificationSound.default
+
+                        // show this notification five seconds from now
+                        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+
+                        // choose a random identifier
+                        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+
+                        // add our notification request
+                        UNUserNotificationCenter.current().add(request)
+                    }
+                }
+                
+                
             } else {
                 EmptySneakerView(showingShoeSheet: $showingShoeSheet)
             }
