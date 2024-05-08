@@ -74,15 +74,6 @@ struct ContentView: View {
 //                                    .padding()
                 
                 VStack {
-                    Button("Request Permission") {
-                        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
-                            if success {
-                                print("All set!")
-                            } else if let error {
-                                print(error.localizedDescription)
-                            }
-                        }
-                    }
 
                     Button("Schedule Notification") {
                         let content = UNMutableNotificationContent()
@@ -129,6 +120,14 @@ struct ContentView: View {
                 print("Authorization request failed: \(error.localizedDescription)")
             }
         }
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+                    if success {
+                        print("Notification permission granted.")
+                    } else if let error = error {
+                        print("Notification permission request failed: \(error.localizedDescription)")
+                    }
+                }
     }
     
     private func fetchRunningWorkouts() {
@@ -194,7 +193,6 @@ struct ContentView: View {
             }
         }
     }
-
 }
 
 struct ContentView_Previews: PreviewProvider {
